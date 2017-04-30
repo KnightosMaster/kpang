@@ -2,11 +2,11 @@
 // Created by knightos on 4/30/17.
 //
 #pragma once
-#include "StdAfx.h"
+#include "stdafx.h"
 class SplashScreen
 {
 public:
-    void show(sf::RenderWindow window);
+    void show(sf::RenderWindow& window);
 };
 
 

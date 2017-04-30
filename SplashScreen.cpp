@@ -4,7 +4,7 @@
 
 #include "SplashScreen.h"
 
-void SplashScreen::show(sf::RenderWindow window) {
+void SplashScreen::show(sf::RenderWindow& window) {
     sf::Texture splash;
     if(splash.loadFromFile("images/Splash.png") != true)
         return;
@@ -19,7 +19,7 @@ void SplashScreen::show(sf::RenderWindow window) {
             if(event.type == sf::Event::EventType::MouseButtonPressed
              ||event.type == sf::Event::EventType::KeyPressed
              ||event.type == sf::Event::EventType::Closed){
-                return
+                return;
             }
         }
     }

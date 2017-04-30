@@ -1,4 +1,6 @@
 #include "KPang.h"
+#include "SplashScreen.h"
+#include "MainMenu.h"
 
 KPang::GameState KPang::gameState = Uninitialized;
 sf::RenderWindow KPang::mainWindow;
@@ -9,7 +11,7 @@ void KPang::start()
         return;
 
     mainWindow.create(sf::VideoMode(1024,768,32),"KPanG!");
-    gameState = KPang::Playing;
+    gameState = KPang::ShowingSplash;
 
     while(!isExiting()){
         gameLoop();
@@ -26,6 +28,28 @@ bool KPang::isExiting()
         return false;
 }
 
+void KPang::showSplash()
+{
+    SplashScreen splashScreen;
+    splashScreen.show(mainWindow);
+    gameState = ShowingMenu;
+}
+
+void KPang::showMenu()
+{
+    MainMenu mainMenu;
+    MainMenu::MenuAction action = mainMenu.show(mainWindow);
+    switch(action)
+    {
+        case MainMenu::Play:
+            gameState = Playing;
+            break;
+        case MainMenu::Exit:
+            gameState = Exiting;
+            break;
+    }
+}
+
 void KPang::gameLoop()
 {
     sf::Event currentEvent;
@@ -33,9 +57,19 @@ void KPang::gameLoop()
 
         switch(gameState)
         {
+            case KPang::ShowingSplash:
+            {
+                showSplash();
+                break;
+            }
+            case KPang::ShowingMenu:
+            {
+                showMenu();
+                break;
+            }
             case KPang::Playing:
             {
-                mainWindow.clear(sf::Color(255,43,76));
+                mainWindow.clear(sf::Color(0,0,0));
                 mainWindow.display();
 
                 if(currentEvent.type == sf::Event::Closed)
