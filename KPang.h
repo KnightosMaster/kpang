@@ -5,8 +5,7 @@
 #ifndef KPANG_KPANG_H
 #define KPANG_KPANG_H
 
-#include "SFML/Window.hpp"
-#include "SFML/Graphics.hpp"
+#include "StdAfx.h"
 
 class KPang
 {
