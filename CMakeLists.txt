@@ -3,7 +3,7 @@ project(KPang)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
-set(SOURCE_FILES main.cpp KPang.cpp SplashScreen.cpp stdafx.cpp MainMenu.cpp)
+set(SOURCE_FILES main.cpp KPang.cpp SplashScreen.cpp stdafx.cpp MainMenu.cpp VisibleGameObject.cpp PlayerPaddle.cpp)
 add_executable(KPang ${SOURCE_FILES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
