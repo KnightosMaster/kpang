@@ -2,8 +2,10 @@
 #include "SplashScreen.h"
 #include "MainMenu.h"
 
+
 KPang::GameState KPang::gameState = Uninitialized;
 sf::RenderWindow KPang::mainWindow;
+PlayerPaddle KPang::_player1;
 
 void KPang::start()
 {
@@ -11,6 +13,10 @@ void KPang::start()
         return;
 
     mainWindow.create(sf::VideoMode(1024,768,32),"KPanG!");
+
+    _player1.load("images/paddle.png");
+    _player1.setPosition((1024/2)-45,700);
+
     gameState = KPang::ShowingSplash;
 
     while(!isExiting()){
@@ -70,10 +76,15 @@ void KPang::gameLoop()
             case KPang::Playing:
             {
                 mainWindow.clear(sf::Color(0,0,0));
+                _player1.draw(mainWindow);
                 mainWindow.display();
 
                 if(currentEvent.type == sf::Event::Closed)
                     gameState = KPang::Exiting;
+
+                if(currentEvent.type == sf::Event::KeyPressed)
+                    if(currentEvent.key.code == sf::Keyboard::Escape)
+                        showMenu();
 
                 break;
             }
