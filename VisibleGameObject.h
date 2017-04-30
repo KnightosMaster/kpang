@@ -18,7 +18,7 @@ public:
 
 private:
     sf::Sprite  _sprite;
-    sf::Image   _image;
+    sf::Texture _image;
     std::string _filename;
     bool        _isLoaded;
 };
