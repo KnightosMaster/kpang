@@ -5,8 +5,7 @@
 #ifndef KPANG_KPANG_H
 #define KPANG_KPANG_H
 
-#include "SFML/Window.hpp"
-#include "SFML/Graphics.hpp"
+#include "stdafx.h"
 
 class KPang
 {
@@ -15,6 +14,9 @@ public:
 private:
     static bool isExiting();
     static void gameLoop();
+
+    static void showSplash();
+    static void showMenu();
 
     enum GameState {Uninitialized, ShowingSplash, Paused, ShowingMenu, Playing, Exiting};
 
