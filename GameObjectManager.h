@@ -5,6 +5,7 @@
 #pragma once
 
 #include "VisibleGameObject.h"
+#include "PlayerPaddle.h"
 
 class GameObjectManager
 {

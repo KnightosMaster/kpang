@@ -6,7 +6,7 @@
 #define KPANG_KPANG_H
 
 #include "stdafx.h"
-#include "PlayerPaddle.h"
+#include "GameObjectManager.h"
 
 class KPang
 {
@@ -23,7 +23,7 @@ private:
 
     static GameState gameState;
     static sf::RenderWindow mainWindow;
-    static PlayerPaddle _player1;
+    static GameObjectManager _gameObjectManager;
 };
 
 #endif //KPANG_KPANG_H

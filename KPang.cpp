@@ -3,9 +3,9 @@
 #include "MainMenu.h"
 
 
-KPang::GameState KPang::gameState = Uninitialized;
-sf::RenderWindow KPang::mainWindow;
-PlayerPaddle KPang::_player1;
+KPang::GameState  KPang::gameState = Uninitialized;
+sf::RenderWindow  KPang::mainWindow;
+GameObjectManager KPang::_gameObjectManager;
 
 void KPang::start()
 {
@@ -14,9 +14,11 @@ void KPang::start()
 
     mainWindow.create(sf::VideoMode(1024,768,32),"KPanG!");
 
-    _player1.load("images/paddle.png");
-    _player1.setPosition((1024/2)-45,700);
+    PlayerPaddle *player1 = new PlayerPaddle();
+    player1->load("images/paddle.png");
+    player1->setPosition((1024/2)-45,700);
 
+    _gameObjectManager.add("Paddle1", player1);
     gameState = KPang::ShowingSplash;
 
     while(!isExiting()){
@@ -76,7 +78,9 @@ void KPang::gameLoop()
             case KPang::Playing:
             {
                 mainWindow.clear(sf::Color(0,0,0));
-                _player1.draw(mainWindow);
+
+                _gameObjectManager.drawAll(mainWindow);
+
                 mainWindow.display();
 
                 if(currentEvent.type == sf::Event::Closed)
@@ -84,7 +88,7 @@ void KPang::gameLoop()
 
                 if(currentEvent.type == sf::Event::KeyPressed)
                     if(currentEvent.key.code == sf::Keyboard::Escape)
-                        showMenu();
+                        gameState = KPang::ShowingMenu;
 
                 break;
             }
